@@ -3,7 +3,9 @@ from tkinter import messagebox
 import os
 import re
 
-ARCHIVO = "Datos/usuarios.txt"
+directorio = os.path.dirname(os.path.abspath(__file__))
+
+archivo = os.path.join(directorio, "Datos", "usuarios.txt")
 
 color_lila_claro = "#D1A8E1"
 color_morado_fuerte = "#A546B6"
@@ -21,7 +23,7 @@ def eliminar():
         messagebox.showwarning("Campo vacío", "Ingrese un ID.")
         return
 
-    if not os.path.exists(ARCHIVO):
+    if not os.path.exists(archivo):
         messagebox.showerror("Error", "Archivo usuarios.txt no existe.")
         return
 
@@ -36,7 +38,7 @@ def eliminar():
     nuevas_lineas = []
     eliminado = False
 
-    with open(ARCHIVO, "r", encoding="utf-8") as f:
+    with open(archivo, "r", encoding="utf-8") as f:
         for linea in f:
             datos = [p.strip() for p in linea.split("|")]
             if datos[0] == id_usuario:
@@ -48,7 +50,7 @@ def eliminar():
         messagebox.showerror("Error", "ID no encontrado.")
         return
 
-    with open(ARCHIVO, "w", encoding="utf-8") as f:
+    with open(archivo, "w", encoding="utf-8") as f:
         f.writelines(nuevas_lineas)
 
     messagebox.showinfo("Éxito", "Usuario eliminado correctamente.")
