@@ -9,7 +9,9 @@ color_morado_fuerte = "#A546B6"
 color_verde_fuerte = "#00674F"
 color_fondo = "#F0F0F0"
 
-ARCHIVO = "Datos/usuarios.txt"
+directorio = os.path.dirname(os.path.abspath(__file__))
+
+archivo = os.path.join(directorio, "Datos", "usuarios.txt")
 
 class VentanaPrincipal:
 
@@ -95,8 +97,8 @@ class VentanaPrincipal:
 
     def cargar_datos(self):
         datos = []
-        if os.path.exists(ARCHIVO):
-            with open(ARCHIVO, "r", encoding="utf-8") as f:
+        if os.path.exists(archivo):
+            with open(archivo, "r", encoding="utf-8") as f:
                 for linea in f:
                     partes = [p.strip() for p in linea.split("|")]
 
@@ -108,9 +110,9 @@ class VentanaPrincipal:
         return datos
     
     def actualizar_tabla(self):
-        if os.path.exists(ARCHIVO):
-            modificado = os.path.getmtime(ARCHIVO)
-
+        if os.path.exists(archivo):
+            modificado = os.path.getmtime(archivo)
+            
             if modificado != self.ultima_modificacion:
                 self.ultima_modificacion = modificado
 
