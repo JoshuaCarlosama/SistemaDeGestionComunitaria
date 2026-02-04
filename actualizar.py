@@ -3,7 +3,9 @@ from tkinter import ttk, messagebox
 import os
 import re
 
-archivo = "Datos/usuarios.txt"
+directorio = os.path.dirname(os.path.abspath(__file__))
+
+archivo = os.path.join(directorio, "Datos", "usuarios.txt")
 
 color_lila_claro = "#D1A8E1"
 color_morado_fuerte = "#A546B6"
