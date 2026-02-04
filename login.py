@@ -4,6 +4,8 @@ from PIL import Image, ImageTk
 import re
 import os
 
+directorio = os.path.dirname(os.path.abspath(__file__))
+
 def validar_texto(nuevo_texto):
     if len(nuevo_texto) > 20:
         return False
@@ -59,7 +61,8 @@ titulo.pack(fill=tk.X, pady=(10, 20))
 contenedor = tk.Frame(app, bg=color_fondo)
 contenedor.pack(pady=10)
 
-img = Image.open("Recursos/PoliLogo.png")
+ruta_logo = os.path.join(directorio, "Recursos", "PoliLogo.png")
+img = Image.open(ruta_logo)
 img = img.resize((380, 200), Image.LANCZOS)
 Logo = ImageTk.PhotoImage(img)
 
