@@ -3,7 +3,9 @@ from tkinter import messagebox
 from PIL import Image, ImageTk
 import os
 
-archivo = "Datos/usuarios.txt"
+directorio = os.path.dirname(os.path.abspath(__file__))
+
+archivo = os.path.join(directorio, "Datos", "usuarios.txt")
 
 recompensa1 = "Recursos/boletin.png"
 recompensa2 = "Recursos/peluche.png"
