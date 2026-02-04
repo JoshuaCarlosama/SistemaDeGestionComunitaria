@@ -2,7 +2,9 @@ import tkinter as tk
 from tkinter import messagebox
 import os
 
-ARCHIVO = "Datos/usuarios.txt"
+directorio = os.path.dirname(os.path.abspath(__file__))
+
+archivo = os.path.join(directorio, "Datos", "usuarios.txt")
 
 class Recompensas:
 
@@ -92,14 +94,14 @@ class Recompensas:
             messagebox.showwarning("Advertencia", "Ingrese un ID.")
             return
 
-        if not os.path.exists(ARCHIVO):
+        if not os.path.exists(archivo):
             messagebox.showerror("Error", "Archivo usuarios.txt no encontrado.")
             return
 
         self.usuario_actual = None
         self.lineas.clear()
 
-        with open(ARCHIVO, "r", encoding="utf-8") as f:
+        with open(archivo, "r", encoding="utf-8") as f:
             for linea in f:
                 datos = [p.strip() for p in linea.split("|")]
                 self.lineas.append(datos)
@@ -156,7 +158,7 @@ class Recompensas:
         )
 
     def guardar(self):
-        with open(ARCHIVO, "w", encoding="utf-8") as f:
+        with open(archivo, "w", encoding="utf-8") as f:
             for datos in self.lineas:
                 f.write(" | ".join(datos) + "\n")
 
@@ -164,7 +166,6 @@ class Recompensas:
         self.lbl_nombre.config(text="Nombre: -")
         self.lbl_apellido.config(text="Apellido: -")
         self.lbl_actividad.config(text="Actividad: -")
-
 
 if __name__ == "__main__":
     Recompensas()
