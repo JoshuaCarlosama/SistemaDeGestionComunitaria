@@ -3,6 +3,11 @@ from tkinter import ttk, messagebox
 import os
 import re
 
+directorio = os.path.dirname(os.path.abspath(__file__))
+
+archivo = os.path.join(directorio, "Datos", "usuarios.txt")
+
+
 def texto_valido(texto, max_len):
     if texto.strip() == "":
         return False
@@ -48,7 +53,7 @@ class SistemaComunitario:
         self.root = root
         self.root.title("Sistema de Gestión de Actividades Comunitarias")
         self.root.geometry("900x700")
-        self.archivo = "Datos/usuarios.txt"
+        self.archivo = archivo
 
         self.nombre = tk.StringVar()
         self.apellido = tk.StringVar()
