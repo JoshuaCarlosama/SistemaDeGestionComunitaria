@@ -3,7 +3,9 @@ from tkinter import ttk, messagebox
 import os
 import re
 
-ARCHIVO = "Datos/usuarios.txt"
+directorio = os.path.dirname(os.path.abspath(__file__))
+
+archivo = os.path.join(directorio, "Datos", "usuarios.txt")
 
 color_lila_claro = "#D1A8E1"
 color_morado_fuerte = "#A546B6"
@@ -69,7 +71,7 @@ tabla.pack(fill=tk.BOTH, expand=True)
 def buscar():
     tabla.delete(*tabla.get_children())
 
-    if not os.path.exists(ARCHIVO):
+    if not os.path.exists(archivo):
         messagebox.showerror("Error", "No existe el archivo usuarios.txt")
         return
 
@@ -79,7 +81,7 @@ def buscar():
 
     encontrado = False
 
-    with open(ARCHIVO, "r", encoding="utf-8") as f:
+    with open(archivo, "r", encoding="utf-8") as f:
         for linea in f:
             datos = [p.strip() for p in linea.split("|")]
             if len(datos) != 7:
